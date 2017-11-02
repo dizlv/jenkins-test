@@ -1,35 +1,39 @@
-pipeline {
-	agent any
+node {
+	deleteDir()
 
-	stages {
-		stage('Checkout Code') {
-			steps {
-				checkout scm
+	try {
+		stages {
+			stage('Clone') {
+				steps {
+					checkout scm
+				}
 			}
+
+			stage('Tests') {
+				steps {
+					sh 'make test'
+				}
+			}
+
+			stage('Build') {
+				steps {
+					echo 'baking'
+					// sh 'make bake'
+				}
+			}
+
+			stage('Push') {
+				steps {
+					echo 'pushing image'
+					// sh 'make push_image'
+				}
+			}		
 		}
+	} catch (error) {
+		currentBuild.result = 'FAILED'
 
-		stage('Run Tests') {
-			steps {
-				echo 'testing'
-				// sh 'make test'
-			}
-		}
-
-		stage('Bake Image') {
-			steps {
-				echo 'baking'
-				// sh 'make bake'
-			}
-		}
-
-		stage('Push Image') {
-			steps {
-				echo 'pushing image'
-				// sh 'make push_image'
-			}
-		}		
+		throw error
 	}
-
 
 	post {
 		always {
