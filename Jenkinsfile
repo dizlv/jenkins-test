@@ -9,6 +9,7 @@ node {
 		stage('Tests') {
 			sh 'pip3 install -r requirements.txt'
 			sh 'make test'
+			junit '**/report.xml'
 		}
 
 		stage('Build') {
@@ -24,11 +25,5 @@ node {
 		currentBuild.result = 'FAILED'
 
 		throw error
-	}
-
-	post {
-		always {
-			junit "report.xml"
-		}
 	}
 }
