@@ -3,29 +3,21 @@ node {
 
 	try {
 		stage('Clone') {
-			steps {
-				checkout scm
-			}
+			checkout scm
 		}
 
 		stage('Tests') {
-			steps {
-				sh 'make test'
-			}
+			sh 'make test'
 		}
 
 		stage('Build') {
-			steps {
-				echo 'baking'
-				// sh 'make bake'
-			}
+			echo 'baking'
+			// sh 'make bake'
 		}
 
 		stage('Push') {
-			steps {
-				echo 'pushing image'
-				// sh 'make push_image'
-			}
+			echo 'pushing image'
+			// sh 'make push_image'
 		}		
 	} catch (error) {
 		currentBuild.result = 'FAILED'
