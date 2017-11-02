@@ -7,6 +7,7 @@ node {
 		}
 
 		stage('Tests') {
+			sh 'pip install -r requirements.txt'
 			sh 'make test'
 		}
 
@@ -18,7 +19,7 @@ node {
 		stage('Push') {
 			echo 'pushing image'
 			// sh 'make push_image'
-		}		
+		}
 	} catch (error) {
 		currentBuild.result = 'FAILED'
 
