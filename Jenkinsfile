@@ -10,19 +10,22 @@ pipeline {
 
 		stage('Run Tests') {
 			steps {
-				sh 'make test'
+				echo 'testing'
+				// sh 'make test'
 			}
 		}
 
 		stage('Bake Image') {
 			steps {
-				sh 'make bake'
+				echo 'baking'
+				// sh 'make bake'
 			}
 		}
 
 		stage('Push Image') {
 			steps {
-				sh 'make push_image'
+				echo 'pushing image'
+				// sh 'make push_image'
 			}
 		}		
 	}
@@ -30,7 +33,7 @@ pipeline {
 
 	post {
 		always {
-			junit "/home/report.xml"
+			junit "report.xml"
 		}
 	}
 }
