@@ -13,13 +13,11 @@ node {
 		}
 
 		stage('Build') {
-			echo 'baking'
-			// sh 'make bake'
+			sh 'make bake'
 		}
 
 		stage('Push') {
-			echo 'pushing image'
-			// sh 'make push_image'
+			sh 'make push_image'
 		}
 	} catch (error) {
 		currentBuild.result = 'FAILED'

@@ -5,4 +5,5 @@ bake:
 	docker build .
 
 push_image:
-	docker push localhost:5000/application
+	docker login registry.supremeteam.io:5000
+	docker push registry.supremeteam.io:5000/application:v1
