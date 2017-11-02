@@ -6,14 +6,13 @@ node {
 			checkout scm
 		}
 
-		stage('Tests') {
-			sh 'pip3 install -r requirements.txt'
-			sh 'make test'
-			junit '**/report.xml'
-		}
-
 		stage('Build') {
 			sh 'make bake'
+		}
+
+		stage('Tests') {
+			sh 'make test'
+			junit '**/report.xml'
 		}
 
 		stage('Push') {
