@@ -1,10 +1,3 @@
-// *. Git checkout
-// *. Run tests
-// *. Build image
-// *. If successful - upload to registry
-def scm_variables = checkout scm
-def commit_hash = scm_variables.GIT_COMMIT
-
 pipeline {
 	agent any
 
